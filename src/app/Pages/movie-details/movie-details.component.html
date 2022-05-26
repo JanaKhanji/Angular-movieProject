@@ -1,0 +1,33 @@
+<button
+    class="btn btn-light my-2 bg-white"
+    routerLink="/posts"
+    >
+        <i class="fa fa-arrow-left mr-2"></i>
+        Back
+</button>
+<div  *ngIf="!loading; else loadingTemplate">
+    <div class="pb-4 d-flex flex-column flex-md-row">
+        <img class="image-style" *ngIf="movieDetail.poster_path"
+            src="http://image.tmdb.org/t/p/w200/{{movieDetail.poster_path}}"
+        />
+        <div class="px-md-3">
+            <h1>{{movieDetail.title}}</h1>
+            <p>{{ movieDetail.overview }}</p>
+            <p><b>Status: </b>{{ movieDetail.status }}</p>
+            <p><b>Release Date: </b>{{ movieDetail.release_date }}</p>
+            <p><b>Rating:</b> {{movieDetail.vote_average}} </p>
+            <p>
+                <b>Genre:</b>
+                <span *ngFor="let genre of movieDetail.genres; let index = index "
+                class="mx-1 badge rounded-pill"
+                [ngClass]="getColor(index)">{{genre.name}}</span>
+            </p>
+        </div>
+    </div>
+</div>
+<ng-template #loadingTemplate>
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,32 @@
+<div class="pt-3">
+    <h1>Search Movies</h1>
+    <app-search (searchEmitter)="handleSearchMovies($event)"></app-search>
+</div>
+<div class="pt-3">
+    <h1 *ngIf="!searchText; else search">Browse Trending Movies</h1>
+    <ng-template #search>
+        <h1>Results for {{searchText}}</h1>
+    </ng-template>
+    <div class="d-flex justify-content-center" *ngIf="loading; else showMovies">
+        <div class="spinner-border" role="status">
+        </div>
+    </div>
+</div>
+<ng-template #showMovies>
+    <div class="row py-2">
+        <div class="col-md-6 py-1" *ngFor="let movie of movies">
+            <app-movie-card [movie]="movie"></app-movie-card>
+        </div>
+    </div>
+        <ul class="pagination flex justify-content-end align-items-center">
+            <li class="page-item"
+              [ngClass]="{'disabled': currentPage === 1}">
+                <a class="page-link" (click)="selectPage(currentPage - 1)">Previous</a>
+            </li>
+            <p class="px-2 mb-0">Page {{currentPage}} of {{maximumPageNumber}}</p>
+            <li class="page-item"
+            [ngClass]="{'disabled': currentPage === maximumPageNumber}">
+              <a class="page-link" (click)="selectPage(currentPage + 1)">Next</a>
+          </li>
+        </ul>
+</ng-template>

@@ -1,0 +1,15 @@
+<div class="card flex-row">
+    <img class="image-style" *ngIf="movie.poster_path; else empty"
+        src="http://image.tmdb.org/t/p/w200/{{movie.poster_path}}"
+    /> 
+    <div class="card-body card-size d-flex flex-column justify-content-center">
+        <h4 class="card-title card-title-height mb-1">{{movie.title}}</h4>
+        <a  [routerLink]="['/movie/',movie.id]"class="card-link">See More</a>
+    </div>
+</div>
+
+<ng-template #empty>
+    <div class="image-style bg-secondary d-flex justify-content-center align-items-center">
+        <i class="fa-solid fa-film fa-5x"></i>
+    </div>
+</ng-template>
