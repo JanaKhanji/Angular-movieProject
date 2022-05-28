@@ -14,7 +14,3 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
 }
-
-.gradientBackground {
-    background-image: linear-gradient(135deg, #007bff, #6c757d);
-}
