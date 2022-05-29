@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
@@ -10,7 +9,7 @@ import { debounceTime } from 'rxjs/operators';
 export class SearchComponent implements OnInit {
   @Output() searchEmitter = new EventEmitter<string>();
 
-  onSearchSubject = new BehaviorSubject<string>('');
+  onSearchSubject = new EventEmitter<string>();
 
   searchText: string;
 
@@ -26,6 +25,6 @@ export class SearchComponent implements OnInit {
   }
 
   onKeyUp(): void {
-    this.onSearchSubject.next(this.searchText);
+    this.onSearchSubject.emit(this.searchText);
   }
 }
