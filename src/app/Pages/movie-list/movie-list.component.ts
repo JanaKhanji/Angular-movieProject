@@ -23,6 +23,7 @@ export class MovieListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.loadMovies();
   }
 
   handleSearchMovies(text: string) {
