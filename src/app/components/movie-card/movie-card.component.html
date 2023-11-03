@@ -1,0 +1,18 @@
+<div class="w-full h-full flex flex-col">
+    <div class="h-52 w-auto flex-none bg-cover rounded-t text-center overflow-hidden"
+    style="background-image: url('http://image.tmdb.org/t/p/w200/{{movie.poster_path}}')" [title]="movie.original_title">
+    </div>
+    <div class="flex-grow border border-t-0 border-gray-400 lg:border-gray-400 bg-white rounded-b lg:rounded-t-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+      <div class="mb-8">
+        <div class="text-gray-900 font-bold text-xl mb-2">{{movie.title}}</div>
+        <!-- <p class="text-gray-700 text-base">{{movie.overview}}</p> -->
+        <a [routerLink]="'/movie/' + movie.id" class="underline text-blue-700 hover:text-blue-900 cursor-pointer">See More</a>
+      </div>
+      <div class="flex items-center">
+        <div class="text-sm">
+          <p class="text-gray-900 leading-none">Release Date: {{movie.release_date}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

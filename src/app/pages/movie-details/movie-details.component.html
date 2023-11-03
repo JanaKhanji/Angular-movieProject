@@ -1,0 +1,37 @@
+<button
+    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer"
+    routerLink="/"
+    >
+        <i class="fa fa-arrow-left mr-2"></i>
+        Back
+</button>
+<div *ngIf="!loading; else loadingTemplate" class="p-5">
+    <div class="pb-4 flex flex-col md:flex-row">
+        <img class="image-style" *ngIf="movieDetail.poster_path"
+            src="http://image.tmdb.org/t/p/w200/{{movieDetail.poster_path}}"
+        />
+        <div class="md:px-3 flex flex-col gap-4">
+            <h1 class="text-3xl font-bold">{{movieDetail.title}}</h1>
+            <p>{{ movieDetail.overview }}</p>
+            <p><b>Status: </b>{{ movieDetail.status }}</p>
+            <p><b>Release Date: </b>{{ movieDetail.release_date }}</p>
+            <p><b>Rating:</b> {{movieDetail.vote_average}} </p>
+            <p>
+                <b>Genre:</b>
+                <span *ngFor="let genre of movieDetail.genres; let index = index "
+                class="mx-1 p-2 bg-blue-500 text-white rounded-full">{{genre.name}}</span>
+            </p>
+        </div>
+    </div>
+</div>
+<ng-template #loadingTemplate>
+    <div class="w-full text-center m-10" *ngIf="!error; else errorView">
+        <i class="fas fa-circle-notch fa-spin fa-7x"></i>
+    </div>
+</ng-template>
+<ng-template #errorView>
+    <div class="w-full text-center m-10" *ngIf="error">
+        <i class="fas fa-xmark fa-7x"></i>
+        <p>404: Movie Not Found</p>
+    </div>
+</ng-template>
